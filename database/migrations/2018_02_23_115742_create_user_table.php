@@ -22,6 +22,9 @@ class CreateUserTable extends Migration
             $table->string('device_token')->nullable();
             $table->string('api_token',64)->nullable(false);
             $table->boolean('active')->default(false);
+            $table->timestamp('created_date')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('modified_date')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+            $table->softDeletes();
             $table->timestamps();
         });
     }

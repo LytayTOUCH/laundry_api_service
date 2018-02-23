@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateServiceQuotationTable extends Migration
+class CreateRoleUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateServiceQuotationTable extends Migration
      */
     public function up()
     {
-        Schema::create('service_quotation', function (Blueprint $table) {
+        Schema::create('role_user', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->string('role')->nullable(false);
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateServiceQuotationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service_quotation');
+        Schema::dropIfExists('role_user');
     }
 }
